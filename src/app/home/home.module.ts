@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { AuthGuardService } from '../auth/auth-guard.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { HomePage } from './home.page';
     RouterModule.forChild([
       {
         path: '',
-        component: HomePage
+        component: HomePage,
+        canActivate: [AuthGuardService]
       }
     ])
   ],
