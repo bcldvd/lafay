@@ -6,14 +6,14 @@ import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-success',
   templateUrl: './success.page.html',
-  styleUrls: ['./success.page.scss'],
+  styleUrls: ['./success.page.scss']
 })
 export class SuccessPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService,
-    private router: Router,
-  ) { }
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.getJwt().subscribe(jwt => {

@@ -10,12 +10,13 @@ const routes: Routes = [
   },
   {
     path: 'success',
-    loadChildren: () => import('./success/success.module').then( m => m.SuccessPageModule)
+    loadChildren: () =>
+      import('./success/success.module').then(m => m.SuccessPageModule)
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class LoginPageRoutingModule {}

@@ -4,18 +4,15 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss']
 })
 export class HomePage implements OnInit {
-
-  constructor(
-    private http: HttpClient
-  ) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http
-      .get('http://localhost:3000/drive/appdata')
-      .subscribe(data => console.log(data), err => console.log(err));
+    this.http.get('http://localhost:3000/drive/appdata').subscribe(
+      data => console.log(data),
+      err => console.log(err)
+    );
   }
-
 }

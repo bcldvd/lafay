@@ -9,12 +9,7 @@ import { SuccessPageRoutingModule } from './success-routing.module';
 import { SuccessPage } from './success.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    SuccessPageRoutingModule
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, SuccessPageRoutingModule],
   declarations: [SuccessPage]
 })
 export class SuccessPageModule {}

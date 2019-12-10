@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#3171e0",
+    "activityBar.foreground": "#ffffff",
+    "activityBar.inactiveForeground": "#689efc",
+    "activityBarBadge.background": "#d33939",
+    "activityBarBadge.foreground": "#ffffff"
+  } // https://ionicframework.com/docs/theming/basics
+}

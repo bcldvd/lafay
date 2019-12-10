@@ -10,10 +10,7 @@ export class AuthService {
   private AUTH_SERVER = 'http://localhost:3000';
   ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
 
-  constructor(
-    private storage: Storage,
-    private jwtHelper: JwtHelperService
-  ) {}
+  constructor(private storage: Storage, private jwtHelper: JwtHelperService) {}
 
   login() {
     window.location.href = `${this.AUTH_SERVER}/auth/google`;
