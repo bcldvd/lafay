@@ -17,7 +17,7 @@ export class HomePage implements OnInit {
     this.getAppConfig().subscribe(data => {
       this.driveService.getSheet((data as any).id).subscribe(config => {
         console.log(config);
-        this.config$.next((config as any).data.sheets[0].data[0].rowData);
+        this.config$.next(config);
       });
     });
   }
