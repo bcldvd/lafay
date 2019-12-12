@@ -8,7 +8,7 @@
 
 <ion-content>
   <div class="ion-padding">
-    {{config$ | async | json}}
+    {{workouts$ | async | json}}
     <ion-button (click)="deleteConfig()" color="danger">Delete config</ion-button>
   </div>
 </ion-content>

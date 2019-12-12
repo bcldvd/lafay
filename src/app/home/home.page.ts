@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { DriveService } from './drive.service';
 import { mergeMap } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+import { GetAppData } from '../store/app-data/actions';
+import { GetWorkouts, Workout } from '../store/workouts/actions';
 
 @Component({
   selector: 'app-home',
@@ -10,16 +13,13 @@ import { mergeMap } from 'rxjs/operators';
 })
 export class HomePage implements OnInit {
   config$ = new Subject();
+  workouts$: Observable<Workout[]>;
 
-  constructor(private driveService: DriveService) {}
+  constructor(private driveService: DriveService, private store: Store<any>) {}
 
   ngOnInit() {
-    this.getAppConfig().subscribe(data => {
-      this.driveService.getSheet((data as any).id).subscribe(config => {
-        console.log(config);
-        this.config$.next(config);
-      });
-    });
+    this.workouts$ = this.store.pipe(select('workouts'));
+    this.store.dispatch(new GetWorkouts());
   }
 
   getAppConfig() {

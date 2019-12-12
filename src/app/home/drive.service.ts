@@ -22,6 +22,6 @@ export class DriveService {
   }
 
   getSheet(id: string) {
-    return this.http.get(`${this.api}/sheet/${id}?range=A1:C3`);
+    return this.http.get(`${this.api}/sheet/${id}?range=A1:C20`);
   }
 }
