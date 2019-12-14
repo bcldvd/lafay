@@ -7,24 +7,26 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 
+const statusBarSpy = {
+  styleDefault: jest.fn()
+};
+const splashScreenSpy = {
+  hide: jest.fn()
+};
+const platformSpy = {
+  ready: jest.fn().mockReturnValue(Promise.resolve())
+};
+
 describe('AppComponent', () => {
-
-  let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
-
   beforeEach(async(() => {
-    statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
-    splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
-    platformReadySpy = Promise.resolve();
-    platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
-
     TestBed.configureTestingModule({
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },
-        { provide: Platform, useValue: platformSpy },
-      ],
+        { provide: Platform, useValue: platformSpy }
+      ]
     }).compileComponents();
   }));
 
@@ -37,11 +39,10 @@ describe('AppComponent', () => {
   it('should initialize the app', async () => {
     TestBed.createComponent(AppComponent);
     expect(platformSpy.ready).toHaveBeenCalled();
-    await platformReadySpy;
+    await platformSpy.ready;
     expect(statusBarSpy.styleDefault).toHaveBeenCalled();
     expect(splashScreenSpy.hide).toHaveBeenCalled();
   });
 
   // TODO: add more tests!
-
 });
