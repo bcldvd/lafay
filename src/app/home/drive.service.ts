@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,19 +10,25 @@ export class DriveService {
 
   constructor(private http: HttpClient) {}
 
-  getAppData() {
-    return this.http.get(`${this.api}/appdata`);
+  getAppData(): Observable<ConfigFile> {
+    return this.http.get<ConfigFile>(`${this.api}/appdata`);
   }
 
-  postAppData(location: string) {
-    return this.http.post(`${this.api}/appdata`, { location });
+  postAppData(location: string): Observable<ConfigFile> {
+    return this.http.post<ConfigFile>(`${this.api}/appdata`, { location });
   }
 
   deleteAppData() {
     return this.http.delete(`${this.api}/appdata`);
   }
 
-  getSheet(id: string) {
-    return this.http.get(`${this.api}/sheet/${id}?range=A1:C20`);
+  getSheet(id: string, range = 'A1:C20') {
+    return this.http.get(`${this.api}/sheet/${id}?range=${range}`);
   }
+}
+
+export interface ConfigFile {
+  pathOfDb: string;
+  title: string;
+  id: string;
 }
