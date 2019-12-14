@@ -28,3 +28,4 @@ jobs:
         coverageCommand: npx jest --coverage
       env:
         CI: true
+        CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TEST_REPORTER_ID }}
