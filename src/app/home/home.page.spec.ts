@@ -4,9 +4,11 @@ import { IonicModule } from '@ionic/angular';
 import { HomePage } from './home.page';
 import { DriveService } from './drive.service';
 import { Store } from '@ngrx/store';
+import { of, throwError } from 'rxjs';
 
 const MockDriveService = {
-  getAppData: () => {}
+  getAppData: () => {},
+  deleteAppData: () => of(true)
 };
 
 const MockStore = {
@@ -38,5 +40,13 @@ describe('HomePage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
     expect(MockStore.dispatch).toHaveBeenCalled();
+  });
+
+  describe('delete config', () => {
+    it('should work', () => {
+      spyOn(console, 'log');
+      component.deleteConfig();
+      expect(console.log).toHaveBeenCalledWith(true);
+    });
   });
 });

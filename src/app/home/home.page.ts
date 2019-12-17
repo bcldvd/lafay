@@ -22,28 +22,6 @@ export class HomePage implements OnInit {
     this.store.dispatch(new GetWorkouts());
   }
 
-  getAppConfig() {
-    const config$ = new Subject();
-    this.driveService.getAppData().subscribe(
-      data => config$.next(data),
-      err => {
-        if (err.status === 404) {
-          const location = './lafay-db';
-          console.log(
-            `Creating a config file with sheet location at ${location}`
-          );
-          this.driveService
-            .postAppData(location)
-            .pipe(mergeMap(() => this.driveService.getAppData()))
-            .subscribe(data => {
-              config$.next(data);
-            });
-        }
-      }
-    );
-    return config$;
-  }
-
   deleteConfig() {
     this.driveService.deleteAppData().subscribe(
       data => console.log(data),

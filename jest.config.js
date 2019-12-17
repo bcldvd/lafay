@@ -9,5 +9,11 @@ module.exports = {
     },
     transformIgnorePatterns: [
         `<rootDir>/node_modules/(?!${esModules})`
+    ],
+    coveragePathIgnorePatterns: [
+        "node_modules",
+        "jestGlobalMocks.ts",
+        ".module.ts",
+        ".mock.ts"
     ]
 };
