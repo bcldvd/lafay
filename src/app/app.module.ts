@@ -22,6 +22,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { WorkoutsReducer } from './store/workouts/reducer';
 import { WorkoutsEffects } from './store/workouts/effects';
 import { environment } from 'src/environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 export function jwtOptionsFactory(storage, auth) {
   return {
@@ -54,6 +55,9 @@ export function jwtOptionsFactory(storage, auth) {
       name: 'Lafay',
       maxAge: 25,
       logOnly: environment.production
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
     })
   ],
   providers: [
