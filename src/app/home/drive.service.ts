@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DriveService {
-  api = 'http://localhost:3000/drive';
+  api = `${environment.AUTH_SERVER}/drive`;
 
   constructor(private http: HttpClient) {}
 
