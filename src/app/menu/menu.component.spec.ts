@@ -22,7 +22,7 @@ describe('MenuComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MenuComponent],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule],
       providers: [
         { provide: DriveService, useValue: MockDriveService },
         { provide: AuthService, useValue: MockAuthService }
