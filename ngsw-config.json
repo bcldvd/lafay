@@ -30,7 +30,7 @@
     {
       "name": "api",
       "urls": [
-        "/drive"
+        "!/**/*drive*"
       ],
       "cacheConfig": {
         "maxSize": 0,
