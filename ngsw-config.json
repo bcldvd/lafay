@@ -30,7 +30,7 @@
     {
       "name": "api",
       "urls": [
-        "!/**/*drive*"
+        "https://gsheets-db.herokuapp.com/*"
       ],
       "cacheConfig": {
         "maxSize": 0,
