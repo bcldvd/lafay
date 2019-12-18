@@ -31,7 +31,7 @@ export function jwtOptionsFactory(storage, auth) {
     tokenGetter: () => {
       return storage.get('ACCESS_TOKEN');
     },
-    whitelistedDomains: ['localhost:3000']
+    whitelistedDomains: [environment.AUTH_DOMAIN]
   };
 }
 
@@ -59,7 +59,7 @@ export function jwtOptionsFactory(storage, auth) {
       logOnly: environment.production
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
+      enabled: true
     })
   ],
   providers: [
