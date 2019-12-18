@@ -6,7 +6,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 const MockStorageService = {
   get: () => {},
-  set: () => {}
+  set: () => {},
+  remove: () => {}
 };
 
 const MockJwtService = {
@@ -31,6 +32,7 @@ describe('AuthService', () => {
 
     spyOn(MockStorageService, 'set').and.returnValue(Promise.resolve(true));
     spyOn(MockStorageService, 'get').and.returnValue(Promise.resolve(true));
+    spyOn(MockStorageService, 'remove').and.returnValue(Promise.resolve(true));
 
     spyOn(MockJwtService, 'isTokenExpired');
   });
@@ -44,6 +46,16 @@ describe('AuthService', () => {
     const service: AuthService = TestBed.get(AuthService);
     service.login();
     expect(window.location.href).not.toBe(baseHref);
+  });
+
+  describe('logout', () => {
+    it('should attempt to remove jwt from storage', () => {
+      const service: AuthService = TestBed.get(AuthService);
+      service.logout();
+      expect(MockStorageService.remove).toHaveBeenCalledWith(
+        service.ACCESS_TOKEN_KEY
+      );
+    });
   });
 
   it('should attempt to store jwt', () => {

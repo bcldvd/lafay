@@ -2,14 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { HomePage } from './home.page';
-import { DriveService } from './drive.service';
 import { Store } from '@ngrx/store';
-import { of, throwError } from 'rxjs';
-
-const MockDriveService = {
-  getAppData: () => {},
-  deleteAppData: () => of(true)
-};
 
 const MockStore = {
   dispatch: () => {},
@@ -24,10 +17,7 @@ describe('HomePage', () => {
     TestBed.configureTestingModule({
       declarations: [HomePage],
       imports: [IonicModule],
-      providers: [
-        { provide: DriveService, useValue: MockDriveService },
-        { provide: Store, useValue: MockStore }
-      ]
+      providers: [{ provide: Store, useValue: MockStore }]
     }).compileComponents();
 
     spyOn(MockStore, 'dispatch');
@@ -40,13 +30,5 @@ describe('HomePage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
     expect(MockStore.dispatch).toHaveBeenCalled();
-  });
-
-  describe('delete config', () => {
-    it('should work', () => {
-      spyOn(console, 'log');
-      component.deleteConfig();
-      expect(console.log).toHaveBeenCalledWith(true);
-    });
   });
 });

@@ -16,6 +16,10 @@ export class AuthService {
     window.location.href = `${environment.AUTH_SERVER}/auth/google`;
   }
 
+  async logout() {
+    await this.storage.remove(this.ACCESS_TOKEN_KEY);
+  }
+
   async setJwt(jwt: string) {
     await this.storage.set(this.ACCESS_TOKEN_KEY, jwt);
   }

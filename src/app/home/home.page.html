@@ -3,12 +3,14 @@
     <ion-title>
       Lafay MVP
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding">
     {{workouts$ | async | json}}
-    <ion-button (click)="deleteConfig()" color="danger">Delete config</ion-button>
   </div>
 </ion-content>

@@ -15,17 +15,10 @@ export class HomePage implements OnInit {
   config$ = new Subject();
   workouts$: Observable<Workout[]>;
 
-  constructor(private driveService: DriveService, private store: Store<any>) {}
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {
     this.workouts$ = this.store.pipe(select('workouts'));
     this.store.dispatch(new GetWorkouts());
-  }
-
-  deleteConfig() {
-    this.driveService.deleteAppData().subscribe(
-      data => console.log(data),
-      err => console.error(err)
-    );
   }
 }

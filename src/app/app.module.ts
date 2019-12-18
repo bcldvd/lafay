@@ -24,6 +24,8 @@ import { WorkoutsEffects } from './store/workouts/effects';
 import { environment } from 'src/environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
+import { MenuComponent } from './menu/menu.component';
+
 export function jwtOptionsFactory(storage, auth) {
   return {
     tokenGetter: () => {
@@ -34,7 +36,7 @@ export function jwtOptionsFactory(storage, auth) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MenuComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
