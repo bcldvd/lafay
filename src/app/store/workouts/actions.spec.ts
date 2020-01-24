@@ -3,6 +3,7 @@ import {
   WorkoutsActionTypes,
   GetWorkoutsSuccess
 } from './actions';
+import { mockWorkout } from './model';
 
 describe('Workouts Actions', () => {
   describe('GetWorkouts Actions', () => {
@@ -18,17 +19,9 @@ describe('Workouts Actions', () => {
 
     describe('GetWorkoutsSuccess', () => {
       it('should create an action', () => {
-        const payload = [
-          {
-            name: 'C3'
-          }
-        ];
-        const action = new GetWorkoutsSuccess(payload);
+        const action = new GetWorkoutsSuccess(mockWorkout);
 
-        expect({ ...action }).toEqual({
-          type: WorkoutsActionTypes.GetSuccess,
-          payload
-        });
+        expect({ ...action }.type).toEqual(WorkoutsActionTypes.GetSuccess);
       });
     });
   });

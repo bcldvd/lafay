@@ -59,7 +59,7 @@ export function jwtOptionsFactory(storage, auth) {
       logOnly: environment.production
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: true
+      enabled: environment.production
     })
   ],
   providers: [

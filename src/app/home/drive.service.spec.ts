@@ -4,6 +4,7 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { DriveService } from './drive.service';
+import { mockWorkout } from '../store/workouts/model';
 
 let service: DriveService, backend: HttpTestingController;
 const mockAppData = {
@@ -76,10 +77,9 @@ describe('AuthService', () => {
     it('should get specific sheet', async done => {
       const sheetId = '123';
       const range = 'A1:C20';
-      const mockSheet = { data: 'test' };
 
       service.getSheet(sheetId, range).subscribe(sheet => {
-        expect(sheet).toEqual(mockSheet);
+        expect(sheet).toEqual(mockWorkout);
         done();
       });
 
@@ -88,16 +88,15 @@ describe('AuthService', () => {
           method: 'GET',
           url: `${service.api}/sheet/${sheetId}?range=${range}`
         })
-        .flush(mockSheet);
+        .flush(mockWorkout);
     });
 
     it('should provide default range if not set', async done => {
       const sheetId = '123';
-      const range = 'A1:C20';
-      const mockSheet = { data: 'test' };
+      const range = 'A1:Z1000';
 
       service.getSheet(sheetId).subscribe(sheet => {
-        expect(sheet).toEqual(mockSheet);
+        expect(sheet).toEqual(mockWorkout);
         done();
       });
 
@@ -106,7 +105,7 @@ describe('AuthService', () => {
           method: 'GET',
           url: `${service.api}/sheet/${sheetId}?range=${range}`
         })
-        .flush(mockSheet);
+        .flush(mockWorkout);
     });
   });
 });

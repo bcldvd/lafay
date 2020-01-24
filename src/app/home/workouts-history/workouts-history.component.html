@@ -1,0 +1,11 @@
+<ion-list>
+  <div *ngFor="let workout of workouts">
+    <ion-item-divider>
+      <ion-label>{{workout.title}}</ion-label>
+    </ion-item-divider>
+    <ion-item *ngFor="let session of workout.rowsData">
+      <ion-label>{{session.Date | timeAgo}}</ion-label>
+      <ion-note slot="end">{{session.Humeur}}</ion-note>
+    </ion-item>
+  </div>
+</ion-list>

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { DriveService } from './drive.service';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, map } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 import { GetAppData } from '../store/app-data/actions';
-import { GetWorkouts, Workout } from '../store/workouts/actions';
+import { GetWorkouts } from '../store/workouts/actions';
+import { Workout } from '../store/workouts/model';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,10 @@ export class HomePage implements OnInit {
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
-    this.workouts$ = this.store.pipe(select('workouts'));
+    this.workouts$ = this.store.pipe(
+      select('workouts'),
+      map(data => data.workouts)
+    );
     this.store.dispatch(new GetWorkouts());
   }
 }

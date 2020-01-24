@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { AuthGuardService } from '../auth/auth-guard.service';
+import { WorkoutsHistoryComponent } from './workouts-history/workouts-history.component';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 @NgModule({
   imports: [
@@ -20,6 +22,6 @@ import { AuthGuardService } from '../auth/auth-guard.service';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, WorkoutsHistoryComponent, TimeAgoPipe]
 })
 export class HomePageModule {}

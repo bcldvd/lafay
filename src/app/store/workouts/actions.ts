@@ -1,8 +1,5 @@
 import { Action } from '@ngrx/store';
-
-export interface Workout {
-  [key: string]: string;
-}
+import { Workout } from './model';
 
 export enum WorkoutsActionTypes {
   Get = '[Workouts] Load workouts from server',

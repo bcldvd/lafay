@@ -8,7 +8,7 @@ import {
   withLatestFrom,
   flatMap
 } from 'rxjs/operators';
-import { WorkoutsActionTypes, GetWorkoutsSuccess, Workout } from './actions';
+import { WorkoutsActionTypes, GetWorkoutsSuccess } from './actions';
 import { DriveService } from 'src/app/home/drive.service';
 import { Store, select } from '@ngrx/store';
 import { GetAppData } from '../app-data/actions';
@@ -31,7 +31,7 @@ export class WorkoutsEffects {
       } else {
         return this.driveService
           .getSheet(appData.id)
-          .pipe(map(data => new GetWorkoutsSuccess(data as Workout[])));
+          .pipe(map(data => new GetWorkoutsSuccess(data)));
       }
     })
   );
