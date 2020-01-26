@@ -15,6 +15,18 @@
   </lafay-exercise>
 
   <div *ngIf="workoutDone$ | async">
-    DONE !!
+    <ion-card class="mood-card">
+      <ion-card-header>
+        <ion-card-subtitle>What's your mood ?</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button fill="clear" shape="round" [ngClass]="{'selected': workoutMood === WorkoutMood.DEAD}"
+          (click)="setWorkoutMood(WorkoutMood.DEAD)">🥵</ion-button>
+        <ion-button fill="clear" shape="round" [ngClass]="{'selected': workoutMood === WorkoutMood.OK}"
+          (click)="setWorkoutMood(WorkoutMood.OK)">😅</ion-button>
+        <ion-button fill="clear" shape="round" [ngClass]="{'selected': workoutMood === WorkoutMood.GREAT}"
+          (click)="setWorkoutMood(WorkoutMood.GREAT)">💪</ion-button>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

@@ -11,6 +11,12 @@ import { Level, ExerciseReq } from './lafay/levels';
 import { Color } from '@ionic/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 
+export enum WorkoutMood {
+  DEAD,
+  OK,
+  GREAT
+}
+
 @Component({
   selector: 'app-workout',
   templateUrl: './workout.page.html',
@@ -25,6 +31,8 @@ export class WorkoutPage implements OnInit, AfterViewInit {
   exerciseStatus$ = new Subject<ExerciseStatus>();
   workoutDone$ = new BehaviorSubject<boolean>(false);
   toolbarColor: Color;
+  WorkoutMood = WorkoutMood;
+  workoutMood: WorkoutMood;
 
   constructor(
     private route: ActivatedRoute,
@@ -89,5 +97,9 @@ export class WorkoutPage implements OnInit, AfterViewInit {
       this.currentExerciseIndex
     ];
     this.currentRound = 1;
+  }
+
+  setWorkoutMood(mood: WorkoutMood) {
+    this.workoutMood = mood;
   }
 }
