@@ -1,7 +1,16 @@
+$header-height: 56px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - #{$header-height});
+}
+
 .rounds {
   display: flex;
   justify-content: space-around;
-  background: blueviolet;
+  background: #efefef;
   padding: 6px;
 
   .round {
@@ -10,5 +19,23 @@
     &.selected {
       background: white;
     }
+  }
+}
+
+.exercise-image {
+  text-align: center;
+
+  img {
+    width: 30vh;
+  }
+}
+
+.recommended-reps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ion-fab {
+    position: relative;
   }
 }

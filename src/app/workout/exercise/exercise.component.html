@@ -1,12 +1,16 @@
-<h4>Exercise {{exercise.name}} - {{exercise.rounds}} Rounds</h4>
-<div class="rounds">
-  <span class="round" *ngFor="let round of rounds" [ngClass]="{'selected':round === currentRound}">{{round}}</span>
+<div class="exercise-header">
+  <h4>Exercise {{exercise.name}} - {{exercise.rounds}} Rounds</h4>
+  <div class="rounds">
+    <span class="round" *ngFor="let round of rounds" [ngClass]="{'selected':round === currentRound}">{{round}}</span>
+  </div>
 </div>
 
-<img [src]="exercise.image" [alt]="exercise.name">
+<div class="exercise-image">
+  <img [src]="exercise.image" [alt]="exercise.name">
+</div>
 
 <div *ngIf="exerciseStatus === ExerciseStatus.EXERCISE">
-  <ion-card>
+  <ion-card class="recommended-reps">
     <ion-card-header>
       <ion-card-subtitle>
         Recommended reps
@@ -22,13 +26,14 @@
         </div>
       </ion-card-title>
     </ion-card-header>
+    <ion-fab horizontal="end">
+      <ion-fab-button (click)="triggerExerciseFinished()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </ion-card>
 
-  <ion-fab horizontal="end">
-    <ion-fab-button (click)="triggerExerciseFinished()">
-      <ion-icon name="checkmark"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+
 </div>
 
 <div *ngIf="exerciseStatus === ExerciseStatus.REST">

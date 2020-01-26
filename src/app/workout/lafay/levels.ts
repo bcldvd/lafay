@@ -5,9 +5,9 @@ export const levels: Level[] = [
     exercises: [
       {
         exerciseId: 0,
-        reps: 5, // Max reps
+        reps: -1, // Max reps
         rounds: 2,
-        rest: 3
+        rest: 1
       },
       {
         exerciseId: 2,
