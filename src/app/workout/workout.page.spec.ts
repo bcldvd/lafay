@@ -65,27 +65,13 @@ describe('WorkoutPage', () => {
     component.exerciseFinished();
   });
 
-  it('should go to next round', () => {
-    component.exerciseStatus$.subscribe(value => {
-      expect(value).toBe(ExerciseStatus.EXERCISE);
-    });
-    component.restFinished(5);
-  });
-
-  it('should go to next exercise', () => {
-    component.currentRound = 2;
+  it('should go to cycle through workout', () => {
     component.exerciseStatus$.subscribe(value => {
       expect(value).toBe(ExerciseStatus.EXERCISE);
     });
     component.restFinished(5);
     component.restFinished(5);
-  });
-
-  it('should finish workout', () => {
-    component.currentExercise = component.currentLevel.exercises[1];
-    component.workoutDone$.subscribe(value => {
-      expect(value).toBe(true);
-    });
+    component.restFinished(5);
     component.restFinished(5);
   });
 
