@@ -10,6 +10,7 @@ import { WorkoutPageRoutingModule } from './workout-routing.module';
 import { WorkoutPage } from './workout.page';
 import { WorkoutCountdownComponent } from './countdown/countdown.component';
 import { ExerciseComponent } from './exercise/exercise.component';
+import { InputPlusMinusComponent } from './exercise/input-plus-minus/input-plus-minus.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,16 @@ import { ExerciseComponent } from './exercise/exercise.component';
     WorkoutPageRoutingModule,
     CountdownModule
   ],
-  declarations: [WorkoutPage, WorkoutCountdownComponent, ExerciseComponent],
-  entryComponents: [WorkoutCountdownComponent, ExerciseComponent]
+  declarations: [
+    WorkoutPage,
+    WorkoutCountdownComponent,
+    ExerciseComponent,
+    InputPlusMinusComponent
+  ],
+  entryComponents: [
+    WorkoutCountdownComponent,
+    ExerciseComponent,
+    InputPlusMinusComponent
+  ]
 })
 export class WorkoutPageModule {}

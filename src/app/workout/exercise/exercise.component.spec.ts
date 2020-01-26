@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { ExerciseComponent } from './exercise.component';
 import { WorkoutCountdownComponent } from '../countdown/countdown.component';
 import { CountdownModule } from 'ngx-countdown';
+import { InputPlusMinusComponent } from './input-plus-minus/input-plus-minus.component';
 
 const MOCK_EXERCISE = {
   exerciseId: 0,
@@ -18,7 +19,11 @@ describe('ExerciseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ExerciseComponent, WorkoutCountdownComponent],
+      declarations: [
+        ExerciseComponent,
+        WorkoutCountdownComponent,
+        InputPlusMinusComponent
+      ],
       imports: [IonicModule.forRoot(), CountdownModule]
     }).compileComponents();
 

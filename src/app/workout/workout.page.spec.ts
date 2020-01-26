@@ -6,6 +6,7 @@ import { CountdownModule } from 'ngx-countdown';
 import { RouterTestingModule } from '@angular/router/testing';
 import { WorkoutCountdownComponent } from './countdown/countdown.component';
 import { ExerciseComponent } from './exercise/exercise.component';
+import { InputPlusMinusComponent } from './exercise/input-plus-minus/input-plus-minus.component';
 
 describe('WorkoutPage', () => {
   let component: WorkoutPage;
@@ -13,7 +14,12 @@ describe('WorkoutPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WorkoutPage, ExerciseComponent, WorkoutCountdownComponent],
+      declarations: [
+        WorkoutPage,
+        ExerciseComponent,
+        WorkoutCountdownComponent,
+        InputPlusMinusComponent
+      ],
       imports: [IonicModule.forRoot(), CountdownModule, RouterTestingModule]
     }).compileComponents();
 

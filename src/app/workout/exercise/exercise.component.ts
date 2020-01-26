@@ -16,30 +16,28 @@ import { ExerciseStatus } from '../lafay/lafay.service';
   styleUrls: ['./exercise.component.scss']
 })
 export class ExerciseComponent implements OnInit, OnChanges {
+  exerciseValue: number;
+
   @Input() exercise: ExerciseReq;
   @Input() currentRound: number;
   @Input() exerciseStatus: ExerciseStatus;
 
   @Output() exerciseFinished = new EventEmitter<boolean>();
-  @Output() restFinished = new EventEmitter<boolean>();
+  @Output() restFinished = new EventEmitter<number>();
 
   rounds: number[];
   ExerciseStatus = ExerciseStatus;
 
   constructor() {}
 
-  ngOnInit() {
-    /* this.rounds = Array(this.exercise.rounds)
-      .fill(0)
-      .map((x, i) => i + 1); */
-  }
+  ngOnInit() {}
 
   triggerExerciseFinished() {
     this.exerciseFinished.emit(true);
   }
 
   triggerRestFinished() {
-    this.restFinished.emit(true);
+    this.restFinished.emit(this.exerciseValue);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -48,5 +46,9 @@ export class ExerciseComponent implements OnInit, OnChanges {
         .fill(0)
         .map((x, i) => i + 1);
     }
+  }
+
+  exerciseValueChanged(exerciseValue: number) {
+    this.exerciseValue = exerciseValue;
   }
 }

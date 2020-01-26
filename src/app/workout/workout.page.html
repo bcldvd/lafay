@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar [color]="toolbarColor">
     <ion-title>Level {{currentLevel.name}}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
@@ -8,11 +8,13 @@
 </ion-header>
 
 <ion-content>
-  <lafay-exercise *ngIf="!workoutDone" [exercise]="currentExercise" [currentRound]="currentRound"
-    [exerciseStatus]="exerciseStatus" (restFinished)="restFinished()" (exerciseFinished)="exerciseFinished()">
+  <!-- <ion-progress-bar></ion-progress-bar> -->
+  <lafay-exercise *ngIf="!(workoutDone$ | async)" [exercise]="currentExercise" [currentRound]="currentRound"
+    [exerciseStatus]="exerciseStatus$ | async" (restFinished)="restFinished($event)"
+    (exerciseFinished)="exerciseFinished()">
   </lafay-exercise>
 
-  <div *ngIf="workoutDone">
+  <div *ngIf="workoutDone$ | async">
     DONE !!
   </div>
 </ion-content>

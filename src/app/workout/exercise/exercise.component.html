@@ -5,11 +5,11 @@
   </div>
 </div>
 
-<div class="exercise-image">
-  <img [src]="exercise.image" [alt]="exercise.name">
-</div>
+<div *ngIf="exerciseStatus === ExerciseStatus.EXERCISE" class="exercise-content">
+  <div class="exercise-image">
+    <img [src]="exercise.image" [alt]="exercise.name">
+  </div>
 
-<div *ngIf="exerciseStatus === ExerciseStatus.EXERCISE">
   <ion-card class="recommended-reps">
     <ion-card-header>
       <ion-card-subtitle>
@@ -36,6 +36,13 @@
 
 </div>
 
-<div *ngIf="exerciseStatus === ExerciseStatus.REST">
+<div *ngIf="exerciseStatus === ExerciseStatus.REST" class="rest-content">
   <workout-countdown [time]="exercise.rest" (done)="triggerRestFinished()"></workout-countdown>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>How many did you do ?</ion-card-subtitle>
+      <input-plus-minus [value]="exercise.reps" (valueChanged)="exerciseValueChanged($event)"></input-plus-minus>
+    </ion-card-header>
+  </ion-card>
 </div>

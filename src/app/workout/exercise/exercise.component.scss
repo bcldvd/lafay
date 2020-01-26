@@ -1,11 +1,6 @@
-$header-height: 56px;
-
-:host {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: calc(100vh - #{$header-height});
-}
+$toolbar-height: 56px;
+$exercise-header-height: 75px;
+$offset-top: $toolbar-height + $exercise-header-height + 16px;
 
 .rounds {
   display: flex;
@@ -20,6 +15,18 @@ $header-height: 56px;
       background: white;
     }
   }
+}
+
+.exercise-content,
+.rest-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: calc(100vh - #{$offset-top});
+}
+
+.rest-content ion-card-subtitle {
+  margin-bottom: 15px;
 }
 
 .exercise-image {
