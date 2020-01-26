@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar [color]="toolbarColor">
+    <ion-title>Level {{currentLevel.name}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-progress-bar></ion-progress-bar> -->
+  <lafay-exercise *ngIf="!(workoutDone$ | async)" [exercise]="currentExercise" [currentRound]="currentRound"
+    [exerciseStatus]="exerciseStatus$ | async" (restFinished)="restFinished($event)"
+    (exerciseFinished)="exerciseFinished()">
+  </lafay-exercise>
+
+  <div *ngIf="workoutDone$ | async">
+    <ion-card class="mood-card">
+      <ion-card-header>
+        <ion-card-subtitle>What's your mood ?</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button fill="clear" shape="round" [ngClass]="{'selected': workoutMood === WorkoutMood.DEAD}"
+          (click)="setWorkoutMood(WorkoutMood.DEAD)">🥵</ion-button>
+        <ion-button fill="clear" shape="round" [ngClass]="{'selected': workoutMood === WorkoutMood.OK}"
+          (click)="setWorkoutMood(WorkoutMood.OK)">😅</ion-button>
+        <ion-button fill="clear" shape="round" [ngClass]="{'selected': workoutMood === WorkoutMood.GREAT}"
+          (click)="setWorkoutMood(WorkoutMood.GREAT)">💪</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,48 @@
+<div class="exercise-header">
+  <h4>Exercise {{exercise.name}} - {{exercise.rounds}} Rounds</h4>
+  <div class="rounds">
+    <span class="round" *ngFor="let round of rounds" [ngClass]="{'selected':round === currentRound}">{{round}}</span>
+  </div>
+</div>
+
+<div *ngIf="exerciseStatus === ExerciseStatus.EXERCISE" class="exercise-content">
+  <div class="exercise-image">
+    <img [src]="exercise.image" [alt]="exercise.name">
+  </div>
+
+  <ion-card class="recommended-reps">
+    <ion-card-header>
+      <ion-card-subtitle>
+        Recommended reps
+      </ion-card-subtitle>
+
+      <ion-card-title>
+        <div *ngIf="exercise.reps < 0">
+          MAX possible
+        </div>
+
+        <div *ngIf="exercise.reps > -1">
+          {{exercise.reps}}
+        </div>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-fab horizontal="end">
+      <ion-fab-button (click)="triggerExerciseFinished()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-card>
+
+
+</div>
+
+<div *ngIf="exerciseStatus === ExerciseStatus.REST" class="rest-content">
+  <workout-countdown [time]="exercise.rest" (done)="triggerRestFinished()"></workout-countdown>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>How many did you do ?</ion-card-subtitle>
+      <input-plus-minus [value]="exercise.reps" (valueChanged)="exerciseValueChanged($event)"></input-plus-minus>
+    </ion-card-header>
+  </ion-card>
+</div>
