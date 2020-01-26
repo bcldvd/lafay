@@ -30,10 +30,30 @@ describe('ExerciseComponent', () => {
     fixture = TestBed.createComponent(ExerciseComponent);
     component = fixture.componentInstance;
     component.exercise = MOCK_EXERCISE;
+    component.exerciseValue = null;
     fixture.detectChanges();
   }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit when exercise is finished', () => {
+    component.exerciseFinished.subscribe(value => {
+      expect(value).toBe(true);
+    });
+    component.triggerExerciseFinished();
+  });
+
+  it('should change exercise value when triggered', () => {
+    component.exerciseValueChanged(5);
+    expect(component.exerciseValue).toBe(5);
+  });
+
+  it('should emit when rest is finished', () => {
+    component.restFinished.subscribe(value => {
+      expect(value).toBe(null);
+    });
+    component.triggerRestFinished();
   });
 });

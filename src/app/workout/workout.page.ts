@@ -47,8 +47,6 @@ export class WorkoutPage implements OnInit, AfterViewInit {
         case ExerciseStatus.REST:
           this.toolbarColor = 'success';
           break;
-        default:
-          this.toolbarColor = 'light';
       }
     });
 

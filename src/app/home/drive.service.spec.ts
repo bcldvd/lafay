@@ -13,7 +13,7 @@ const mockAppData = {
   id: 'uuid'
 };
 
-describe('AuthService', () => {
+describe('DriveService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]

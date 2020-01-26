@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WorkoutCountdownComponent } from './countdown.component';
-import { CountdownModule } from 'ngx-countdown';
+import { CountdownModule, CountdownStatus } from 'ngx-countdown';
 
 describe('WorkoutCountdownComponent', () => {
   let component: WorkoutCountdownComponent;
@@ -27,5 +27,13 @@ describe('WorkoutCountdownComponent', () => {
   it('should format time', () => {
     expect(component.formatFromTime(70)).toBe('m:ss');
     expect(component.formatFromTime(7)).toBe('s');
+  });
+
+  it('should handle event', () => {
+    component.done.subscribe(value => {
+      expect(value).toBe(true);
+    });
+    component.handleEvent({ status: null });
+    component.handleEvent({ status: CountdownStatus.done });
   });
 });
