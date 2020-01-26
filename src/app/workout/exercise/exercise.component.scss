@@ -1,0 +1,14 @@
+.rounds {
+  display: flex;
+  justify-content: space-around;
+  background: blueviolet;
+  padding: 6px;
+
+  .round {
+    border-radius: 25px;
+    padding: 4px 10px;
+    &.selected {
+      background: white;
+    }
+  }
+}

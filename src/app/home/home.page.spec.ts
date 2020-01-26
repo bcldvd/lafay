@@ -5,6 +5,7 @@ import { HomePage } from './home.page';
 import { Store } from '@ngrx/store';
 import { WorkoutsHistoryComponent } from './workouts-history/workouts-history.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const MockStore = {
   dispatch: () => {},
@@ -18,7 +19,7 @@ describe('HomePage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [HomePage, WorkoutsHistoryComponent, TimeAgoPipe],
-      imports: [IonicModule],
+      imports: [IonicModule, RouterTestingModule],
       providers: [{ provide: Store, useValue: MockStore }]
     }).compileComponents();
 

@@ -5,6 +5,7 @@ import { MenuComponent } from './menu.component';
 import { of } from 'rxjs';
 import { DriveService } from '../home/drive.service';
 import { AuthService } from '../auth/auth.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const MockDriveService = {
   getAppData: () => {},
@@ -22,7 +23,7 @@ describe('MenuComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MenuComponent],
-      imports: [IonicModule],
+      imports: [IonicModule, RouterTestingModule],
       providers: [
         { provide: DriveService, useValue: MockDriveService },
         { provide: AuthService, useValue: MockAuthService }

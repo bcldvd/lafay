@@ -11,8 +11,10 @@
 
 <ion-content>
   <div class="ion-padding">
+    <ion-button expand="block" (click)="newWorkout()">New workout</ion-button>
 
     <h2>Your last sessions</h2>
-    <app-workouts-history [workouts]="workouts$ | async"></app-workouts-history>
   </div>
+
+  <app-workouts-history [workouts]="workouts$ | async"></app-workouts-history>
 </ion-content>
