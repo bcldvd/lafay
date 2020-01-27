@@ -14,7 +14,23 @@
     (exerciseFinished)="exerciseFinished()">
   </lafay-exercise>
 
-  <div *ngIf="workoutDone$ | async">
+  <div *ngIf="workoutDone$ | async" class="workout-done">
+    <div class="workout-results">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>Workout results</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let exercise of this.currentLevel.exercises">
+          <ion-avatar slot="start">
+            <img [src]="exercise.image">
+          </ion-avatar>
+          <ion-label>
+            <span *ngFor="let reps of this.workoutResults[exercise.name]">{{reps}}</span>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
     <ion-card class="mood-card">
       <ion-card-header>
         <ion-card-subtitle>What's your mood ?</ion-card-subtitle>
@@ -28,5 +44,8 @@
           (click)="setWorkoutMood(WorkoutMood.GREAT)">💪</ion-button>
       </ion-card-content>
     </ion-card>
+
+    <ion-button expand="block" (click)="save()" [disabled]="!workoutMood">Save</ion-button>
+
   </div>
 </ion-content>

@@ -17,3 +17,32 @@
     }
   }
 }
+
+.workout-done {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.workout-results {
+  flex: 1;
+  overflow: scroll;
+
+  ion-item:last-child {
+    --inner-border-width: 0;
+  }
+
+  ion-label {
+    display: flex;
+    justify-content: space-around;
+
+    span {
+      background: #f7f7f7;
+      padding: 10px;
+      border: solid 1px #ddd;
+      flex: 1;
+      margin: 0 5px;
+      text-align: center;
+    }
+  }
+}

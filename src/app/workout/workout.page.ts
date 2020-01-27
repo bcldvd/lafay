@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  ViewChild,
   AfterViewInit,
   ChangeDetectorRef
 } from '@angular/core';
@@ -10,6 +9,7 @@ import { LafayService, ExerciseStatus } from './lafay/lafay.service';
 import { Level, ExerciseReq } from './lafay/levels';
 import { Color } from '@ionic/core';
 import { Subject, BehaviorSubject } from 'rxjs';
+import { NavController } from '@ionic/angular';
 
 export enum WorkoutMood {
   DEAD,
@@ -33,11 +33,13 @@ export class WorkoutPage implements OnInit, AfterViewInit {
   toolbarColor: Color;
   WorkoutMood = WorkoutMood;
   workoutMood: WorkoutMood;
+  workoutResults = {};
 
   constructor(
     private route: ActivatedRoute,
     private lafayService: LafayService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -78,6 +80,8 @@ export class WorkoutPage implements OnInit, AfterViewInit {
     console.log(
       `You managed to do ${exerciseValue} reps for exercise ${this.currentExercise.name} (round ${this.currentRound})`
     );
+    this.workoutResults[this.currentExercise.name].push(exerciseValue);
+
     if (this.currentRound < this.currentExercise.rounds) {
       this.currentRound++;
       this.exerciseStatus$.next(ExerciseStatus.EXERCISE);
@@ -97,9 +101,14 @@ export class WorkoutPage implements OnInit, AfterViewInit {
       this.currentExerciseIndex
     ];
     this.currentRound = 1;
+    this.workoutResults[this.currentExercise.name] = [];
   }
 
   setWorkoutMood(mood: WorkoutMood) {
     this.workoutMood = mood;
+  }
+
+  save() {
+    this.navCtrl.navigateBack('home');
   }
 }

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 
 import { WorkoutPage, WorkoutMood } from './workout.page';
 import { CountdownModule } from 'ngx-countdown';
@@ -8,6 +8,7 @@ import { WorkoutCountdownComponent } from './countdown/countdown.component';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { InputPlusMinusComponent } from './exercise/input-plus-minus/input-plus-minus.component';
 import { ExerciseStatus, LafayService } from './lafay/lafay.service';
+import { MockNavCtrl } from '../../mocks';
 
 class MockLafayService {
   getLevel(id: number) {
@@ -44,7 +45,10 @@ describe('WorkoutPage', () => {
         WorkoutCountdownComponent,
         InputPlusMinusComponent
       ],
-      providers: [{ provide: LafayService, useClass: MockLafayService }],
+      providers: [
+        { provide: LafayService, useClass: MockLafayService },
+        { provide: NavController, useClass: MockNavCtrl }
+      ],
       imports: [IonicModule.forRoot(), CountdownModule, RouterTestingModule]
     }).compileComponents();
 
@@ -78,5 +82,12 @@ describe('WorkoutPage', () => {
   it('should set workout mood', () => {
     component.setWorkoutMood(WorkoutMood.GREAT);
     expect(component.workoutMood).toBe(WorkoutMood.GREAT);
+  });
+
+  it('should redirect to home when workout is saved', () => {
+    const navCtrl = TestBed.get(NavController);
+    spyOn(navCtrl, 'navigateBack');
+    component.save();
+    expect(navCtrl.navigateBack).toHaveBeenCalledWith('home');
   });
 });

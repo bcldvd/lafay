@@ -14,6 +14,7 @@ module.exports = {
         "node_modules",
         "jestGlobalMocks.ts",
         ".module.ts",
-        ".mock.ts"
+        ".mock.ts",
+        "mocks.ts"
     ]
 };
