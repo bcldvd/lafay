@@ -10,11 +10,17 @@
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
+  <div class="content">
+    <h2 class="ion-padding">Your last sessions</h2>
+
+    <ng-template #loading>
+      <workouts-history-skeleton></workouts-history-skeleton>
+    </ng-template>
+
+    <ng-container *ngIf="workouts$ | async as workout; else loading">
+      <app-workouts-history [workouts]="workout"></app-workouts-history>
+    </ng-container>
+
     <ion-button expand="block" (click)="newWorkout()">New workout</ion-button>
-
-    <h2>Your last sessions</h2>
   </div>
-
-  <app-workouts-history [workouts]="workouts$ | async"></app-workouts-history>
 </ion-content>

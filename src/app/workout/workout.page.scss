@@ -22,6 +22,10 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+
+  ion-button[expand='block'] {
+    margin: 0 10px 10px;
+  }
 }
 
 .workout-results {

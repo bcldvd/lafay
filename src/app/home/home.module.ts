@@ -8,6 +8,8 @@ import { HomePage } from './home.page';
 import { AuthGuardService } from '../auth/auth-guard.service';
 import { WorkoutsHistoryComponent } from './workouts-history/workouts-history.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { WorkoutsHistorySkeletonComponent } from './workouts-history-skeleton/workouts-history-skeleton.component';
+import { NbToArrayPipe } from '../pipes/nb-to-array.pipe';
 
 @NgModule({
   imports: [
@@ -22,6 +24,12 @@ import { TimeAgoPipe } from 'time-ago-pipe';
       }
     ])
   ],
-  declarations: [HomePage, WorkoutsHistoryComponent, TimeAgoPipe]
+  declarations: [
+    HomePage,
+    WorkoutsHistoryComponent,
+    TimeAgoPipe,
+    WorkoutsHistorySkeletonComponent,
+    NbToArrayPipe
+  ]
 })
 export class HomePageModule {}

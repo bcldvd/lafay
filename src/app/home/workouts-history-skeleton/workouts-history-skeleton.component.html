@@ -1,0 +1,17 @@
+<ion-list>
+  <ng-container *ngFor="let level of (levels | nbToArray)">
+    <ion-list-header>
+      <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+    </ion-list-header>
+    <ion-item *ngFor="let session of (sessions | nbToArray)">
+      <ion-label>
+        <p>
+          <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+      <ion-avatar slot="end">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+    </ion-item>
+  </ng-container>
+</ion-list>

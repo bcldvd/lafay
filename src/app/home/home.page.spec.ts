@@ -7,6 +7,8 @@ import { WorkoutsHistoryComponent } from './workouts-history/workouts-history.co
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { WorkoutsHistorySkeletonComponent } from './workouts-history-skeleton/workouts-history-skeleton.component';
+import { NbToArrayPipe } from '../pipes/nb-to-array.pipe';
 
 const MockStore = {
   dispatch: () => {},
@@ -21,7 +23,13 @@ describe('HomePage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomePage, WorkoutsHistoryComponent, TimeAgoPipe],
+      declarations: [
+        HomePage,
+        WorkoutsHistoryComponent,
+        TimeAgoPipe,
+        WorkoutsHistorySkeletonComponent,
+        NbToArrayPipe
+      ],
       imports: [IonicModule, RouterTestingModule],
       providers: [
         { provide: Store, useValue: MockStore },

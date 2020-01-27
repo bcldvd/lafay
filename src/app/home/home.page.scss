@@ -1,1 +1,15 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
+  workouts-history-skeleton,
+  app-workouts-history {
+    flex: 1;
+    overflow: scroll;
+  }
+
+  ion-button {
+    margin: 10px;
+  }
+}
