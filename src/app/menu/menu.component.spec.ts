@@ -2,15 +2,20 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { MenuComponent } from './menu.component';
-import { of } from 'rxjs';
+import { of, Observable, throwError } from 'rxjs';
 import { DriveService } from '../home/drive.service';
 import { AuthService } from '../auth/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
-const MockDriveService = {
-  getAppData: () => {},
-  deleteAppData: () => of(true)
-};
+class MockDriveService {
+  throwErrors: false;
+
+  getAppData() {}
+
+  deleteAppData() {
+    return this.throwErrors ? throwError(null) : of(true);
+  }
+}
 
 const MockAuthService = {
   logout: () => {}
@@ -25,7 +30,7 @@ describe('MenuComponent', () => {
       declarations: [MenuComponent],
       imports: [IonicModule, RouterTestingModule],
       providers: [
-        { provide: DriveService, useValue: MockDriveService },
+        { provide: DriveService, useClass: MockDriveService },
         { provide: AuthService, useValue: MockAuthService }
       ]
     }).compileComponents();
@@ -46,6 +51,17 @@ describe('MenuComponent', () => {
       spyOn(console, 'log');
       component.deleteConfig();
       expect(console.log).toHaveBeenCalledWith(true);
+    });
+
+    it('should catch potential errors', () => {
+      const driveService = TestBed.get(DriveService);
+      driveService.throwErrors = true;
+
+      spyOn(console, 'error');
+
+      component.deleteConfig();
+
+      expect(console.error).toHaveBeenCalled();
     });
   });
 
