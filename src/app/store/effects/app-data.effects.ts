@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { switchMap, catchError, mergeMap } from 'rxjs/operators';
-import { AppDataActionTypes, GetAppDataSuccess, ConfigFile } from './actions';
+import { fromWorkouts, fromAppData } from '../actions';
 import { DriveService } from 'src/app/home/drive.service';
 import { Store } from '@ngrx/store';
-import { GetWorkouts } from '../workouts/actions';
 import { throwError } from 'rxjs';
+import { ConfigFile } from '../models/app-data.model';
 
 @Injectable()
 export class AppDataEffects {
@@ -13,7 +13,7 @@ export class AppDataEffects {
 
   @Effect()
   getAppData$ = this.actions$.pipe(
-    ofType(AppDataActionTypes.Get),
+    ofType(fromAppData.getAppData),
     switchMap(() => this.driveService.getAppData()),
     catchError(e => {
       if (e.status === 404) {
@@ -29,8 +29,8 @@ export class AppDataEffects {
       }
     }),
     switchMap((appData: ConfigFile) => [
-      new GetAppDataSuccess(appData),
-      new GetWorkouts()
+      fromAppData.getAppDataSuccess({ appData }),
+      fromWorkouts.getWorkouts()
     ])
   );
 }

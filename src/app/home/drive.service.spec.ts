@@ -4,7 +4,7 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { DriveService } from './drive.service';
-import { mockWorkout } from '../store/workouts/model';
+import { mockWorkout } from '../store/models/workouts.model';
 
 let service: DriveService, backend: HttpTestingController;
 const mockAppData = {

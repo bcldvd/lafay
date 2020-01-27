@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { EMPTY, of } from 'rxjs';
-import {
-  catchError,
-  map,
-  mergeMap,
-  withLatestFrom,
-  flatMap
-} from 'rxjs/operators';
-import { WorkoutsActionTypes, GetWorkoutsSuccess } from './actions';
+import { of } from 'rxjs';
+import { map, withLatestFrom, flatMap } from 'rxjs/operators';
+import { fromWorkouts, fromAppData } from '../actions';
 import { DriveService } from 'src/app/home/drive.service';
 import { Store, select } from '@ngrx/store';
-import { GetAppData } from '../app-data/actions';
+import { selectAppData } from '../selectors/app-data.selector';
 
 @Injectable()
 export class WorkoutsEffects {
@@ -23,15 +17,15 @@ export class WorkoutsEffects {
 
   @Effect()
   getWorkouts$ = this.actions$.pipe(
-    ofType(WorkoutsActionTypes.Get),
+    ofType(fromWorkouts.getWorkouts),
     withLatestFrom(this.store.pipe(select('appData'))),
-    flatMap(([_, appData]) => {
-      if (Object.keys(appData).length === 0) {
-        return of(new GetAppData());
+    flatMap(([action, appData]) => {
+      if (!appData.loaded) {
+        return of(fromAppData.getAppData());
       } else {
         return this.driveService
           .getSheet(appData.id)
-          .pipe(map(data => new GetWorkoutsSuccess(data)));
+          .pipe(map(workouts => fromWorkouts.getWorkoutsSuccess({ workouts })));
       }
     })
   );

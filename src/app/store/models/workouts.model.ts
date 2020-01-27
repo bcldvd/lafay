@@ -1,3 +1,6 @@
+import { EntityState } from '@ngrx/entity';
+import { AppState } from '.';
+
 export interface SubGroup {
   data: string[];
   title: string;
@@ -35,3 +38,7 @@ export const mockWorkout = [
     ]
   }
 ];
+
+export interface WorkoutsState extends EntityState<Workout> {
+  loaded: boolean;
+}
