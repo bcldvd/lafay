@@ -19,8 +19,8 @@ import { NbToArrayPipe } from '../pipes/nb-to-array.pipe';
     RouterModule.forChild([
       {
         path: '',
-        component: HomePage
-        //canActivate: [AuthGuardService]
+        component: HomePage,
+        canActivate: [AuthGuardService]
       }
     ])
   ],
