@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
-import { Workout } from '../store/workouts/model';
+import { Workout } from '../store/models/workouts.model';
+import { ConfigFile } from '../store/models/app-data.model';
 
 const headers = {
   'ngsw-bypass': ''
@@ -58,10 +59,4 @@ export class DriveService {
     // month is 0-based, that's why we need dataParts[1] - 1
     return new Date(+dateParts[2], +dateParts[1] - 1, +dateParts[0]);
   }
-}
-
-export interface ConfigFile {
-  pathOfDb: string;
-  title: string;
-  id: string;
 }

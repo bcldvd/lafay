@@ -15,16 +15,15 @@ import { Storage } from '@ionic/storage';
 import { AuthService } from './auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { AppDataReducer } from './store/app-data/reducer';
-import { AppDataEffects } from './store/app-data/effects';
+import { AppDataEffects } from './store/effects/app-data.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { WorkoutsReducer } from './store/workouts/reducer';
-import { WorkoutsEffects } from './store/workouts/effects';
+import { WorkoutsEffects } from './store/effects/workouts.effects';
 import { environment } from 'src/environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { MenuComponent } from './menu/menu.component';
+import { reducers } from './store/reducers';
 
 export function jwtOptionsFactory(storage, auth) {
   return {
@@ -51,7 +50,7 @@ export function jwtOptionsFactory(storage, auth) {
         deps: [Storage]
       }
     }),
-    StoreModule.forRoot({ appData: AppDataReducer, workouts: WorkoutsReducer }),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AppDataEffects, WorkoutsEffects]),
     StoreDevtoolsModule.instrument({
       name: 'Lafay',

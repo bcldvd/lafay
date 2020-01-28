@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Workout } from 'src/app/store/workouts/model';
+import { Workout } from '../../store/models/workouts.model';
 
 @Component({
   selector: 'app-workouts-history',

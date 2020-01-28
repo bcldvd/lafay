@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
-import { GetWorkouts } from '../store/workouts/actions';
-import { Workout } from '../store/workouts/model';
+import { fromWorkouts } from '../store/actions';
+import { Workout, WorkoutsState } from '../store/models/workouts.model';
 import { Router } from '@angular/router';
+import { selectAllWorkouts } from '../store/selectors/workouts.selector';
+import { AppState } from '../store/models';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +17,11 @@ export class HomePage implements OnInit {
   config$ = new Subject();
   workouts$: Observable<Workout[]>;
 
-  constructor(private store: Store<any>, private router: Router) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit() {
-    this.workouts$ = this.store.pipe(
-      select('workouts'),
-      map(data => data.workouts)
-    );
-    this.store.dispatch(new GetWorkouts());
+    this.workouts$ = this.store.pipe(select(selectAllWorkouts));
+    this.store.dispatch(fromWorkouts.getWorkouts());
   }
 
   newWorkout() {
