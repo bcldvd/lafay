@@ -6,3 +6,8 @@ export const selectAppData = createSelector(
   selectAppDataState,
   (state: AppDataState) => state
 );
+
+export const isAppDataLoaded = createSelector(
+  selectAppDataState,
+  (state: AppDataState) => state.loaded
+);

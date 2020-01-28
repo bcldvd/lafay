@@ -20,12 +20,7 @@ export class HomePage implements OnInit {
   constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit() {
-    this.workouts$ = this.store.pipe(
-      select(selectAllWorkouts),
-      map(data => {
-        return data;
-      })
-    );
+    this.workouts$ = this.store.pipe(select(selectAllWorkouts));
     this.store.dispatch(fromWorkouts.getWorkouts());
   }
 

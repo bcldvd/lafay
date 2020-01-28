@@ -16,13 +16,7 @@ const reducer = createReducer(
     ...action.appData,
     loaded: true
   })),
-  on(fromAppData.saveAppDataSuccess, state => ({ ...state })),
-  on(fromAppData.deleteAppDataSuccess, () => ({
-    pathOfDb: null,
-    title: null,
-    id: null,
-    loaded: false
-  }))
+  on(fromAppData.deleteAppDataSuccess, () => initialState)
 );
 
 export function appDataReducer(

@@ -10,6 +10,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { WorkoutsHistorySkeletonComponent } from './workouts-history-skeleton/workouts-history-skeleton.component';
 import { NbToArrayPipe } from '../pipes/nb-to-array.pipe';
+import { selectAllWorkouts } from '../store/selectors/workouts.selector';
 
 const routerSpy = { navigate: jasmine.createSpy('navigate') };
 
@@ -33,9 +34,7 @@ describe('HomePage', () => {
     }).compileComponents();
 
     mockStore = TestBed.get(Store);
-    mockUsernameSelector = mockStore.overrideSelector('workouts', {
-      workouts: []
-    });
+    mockUsernameSelector = mockStore.overrideSelector(selectAllWorkouts, []);
 
     fixture = TestBed.createComponent(HomePage);
     component = fixture.componentInstance;
@@ -44,7 +43,6 @@ describe('HomePage', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    //expect(mockStore.dispatch).toHaveBeenCalled();
   });
 
   it(`should navigate to workout`, () => {

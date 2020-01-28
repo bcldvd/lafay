@@ -8,7 +8,7 @@ export interface AppDataState extends ConfigFile {
   loaded: boolean;
 }
 
-export const configFileMock: ConfigFile = {
+export const mockAppData: ConfigFile = {
   pathOfDb: '.',
   title: 'mock',
   id: 'test-id'

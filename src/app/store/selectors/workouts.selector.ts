@@ -8,7 +8,7 @@ export const selectWorkouts = createSelector(
   (state: WorkoutsState) => state
 );
 
-export const selectWorkoutsLoaded = createSelector(
+export const areWorkoutsLoaded = createSelector(
   selectWorkoutsState,
   (state: WorkoutsState) => state.loaded
 );
