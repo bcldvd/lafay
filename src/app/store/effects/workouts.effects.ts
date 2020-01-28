@@ -6,19 +6,20 @@ import { fromWorkouts, fromAppData } from '../actions';
 import { DriveService } from 'src/app/home/drive.service';
 import { Store, select } from '@ngrx/store';
 import { selectAppData } from '../selectors/app-data.selector';
+import { AppState } from '../models';
 
 @Injectable()
 export class WorkoutsEffects {
   constructor(
     private actions$: Actions,
     private driveService: DriveService,
-    private store: Store<any>
+    private store: Store<AppState>
   ) {}
 
   @Effect()
   getWorkouts$ = this.actions$.pipe(
     ofType(fromWorkouts.getWorkouts),
-    withLatestFrom(this.store.pipe(select('appData'))),
+    withLatestFrom(this.store.pipe(select(selectAppData))),
     flatMap(([action, appData]) => {
       if (!appData.loaded) {
         return of(fromAppData.getAppData());

@@ -5,10 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { fromWorkouts } from '../store/actions';
 import { Workout, WorkoutsState } from '../store/models/workouts.model';
 import { Router } from '@angular/router';
-import {
-  selectWorkoutsLoaded,
-  selectAllWorkouts
-} from '../store/selectors/workouts.selector';
+import { selectAllWorkouts } from '../store/selectors/workouts.selector';
 import { AppState } from '../store/models';
 
 @Component({
@@ -20,11 +17,11 @@ export class HomePage implements OnInit {
   config$ = new Subject();
   workouts$: Observable<Workout[]>;
 
-  constructor(private store: Store<WorkoutsState>, private router: Router) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit() {
     this.workouts$ = this.store.pipe(
-      selectAllWorkouts,
+      select(selectAllWorkouts),
       map(data => {
         return data;
       })

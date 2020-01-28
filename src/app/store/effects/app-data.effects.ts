@@ -3,7 +3,6 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { fromWorkouts, fromAppData } from '../actions';
 import { DriveService } from 'src/app/home/drive.service';
-import { Store } from '@ngrx/store';
 import { throwError } from 'rxjs';
 import { ConfigFile } from '../models/app-data.model';
 

@@ -1,5 +1,4 @@
 import { EntityState } from '@ngrx/entity';
-import { AppState } from '.';
 
 export interface SubGroup {
   data: string[];
@@ -17,7 +16,7 @@ export interface Workout {
   rowsData: RowsData[];
 }
 
-export const mockWorkout = [
+export const mockWorkout: Workout[] = [
   {
     title: 'Niveau 2',
     rowsData: [
@@ -32,7 +31,8 @@ export const mockWorkout = [
             title: 'A3'
           }
         ],
-        Date: '22/01/2020',
+        Date:
+          'Tue Jan 28 2020 00:00:00 GMT+0100 (Central European Standard Time)',
         Humeur: '🥵'
       }
     ]

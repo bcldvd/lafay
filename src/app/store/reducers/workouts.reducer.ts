@@ -3,9 +3,9 @@ import { Workout, WorkoutsState } from '../models/workouts.model';
 import { createReducer, on, Action } from '@ngrx/store';
 import { fromWorkouts } from '../actions';
 
-// import { ActionsUnion, WorkoutsActionTypes } from '../actions/workouts.actions';
-
-export const adapter: EntityAdapter<Workout> = createEntityAdapter<Workout>({});
+export const adapter: EntityAdapter<Workout> = createEntityAdapter<Workout>({
+  selectId: workout => workout.title
+});
 
 export const initialState: WorkoutsState = adapter.getInitialState({
   loaded: false
