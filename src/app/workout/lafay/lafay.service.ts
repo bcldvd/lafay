@@ -29,6 +29,10 @@ export class LafayService {
     return this.exercises[id];
   }
 
+  saveSession(session) {
+    // this.databaseService.push('sessions', session);
+  }
+
   private mockExercices() {
     exercises.forEach(exo => {
       this.exercises[exo.id] = exo;

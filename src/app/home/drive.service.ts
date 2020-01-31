@@ -53,6 +53,21 @@ export class DriveService {
       );
   }
 
+  saveSheet(id: string) {
+    const body = {};
+    return this.http
+      .put<Workout[]>(`${this.api}/db/${id}`, body, defaultOptions)
+      .pipe(
+        map(workouts => {
+          console.log(workouts);
+        })
+      );
+  }
+  /* 
+  push(collection: string, session: any) {
+    this.saveSheet()
+  } */
+
   private frenchDateToDate(dateString: string): Date {
     const dateParts = dateString.split('/');
 
