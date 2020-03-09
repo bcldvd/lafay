@@ -12,7 +12,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "generate:icons": "ngx-pwa-icons -i ./src/icon.png",
-    "heroku-postbuild": "ng build --aot --prod"
+    "heroku-postbuild": "ng build --aot --prod",
+    "netlify": "ng build --aot --prod --configuration=netlify"
   },
   "private": true,
   "dependencies": {
