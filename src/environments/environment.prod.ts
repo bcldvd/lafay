@@ -1,4 +1,4 @@
-const AUTH_DOMAIN = 'gsheets-db.herokuapp.com';
+const AUTH_DOMAIN = process.env.AUTH_DOMAIN || 'gsheets-db.herokuapp.com';
 
 export const environment = {
   production: true,
